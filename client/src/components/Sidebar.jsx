@@ -15,7 +15,7 @@ function Sidebar() {
     <div className="w-64 bg-gray-800 text-white min-h-screen p-4 shadow-lg">
       <div className="text-2xl font-bold mb-6 flex items-center">
         <img src="/vite.svg" alt="PlacePortal Logo" className="h-8 w-8 mr-2" />
-        <Link to="/" className="text-white">PlacePortal</Link>
+        <Link to="/" className="text-white">JobSphere</Link>
       </div>
 
       <nav className="space-y-2 mb-8">

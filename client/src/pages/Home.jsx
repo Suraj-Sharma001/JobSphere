@@ -17,13 +17,7 @@ const Home = () => {
             to="/register"
             className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
           >
-            Join as Student
-          </Link>
-          <Link
-            to="/register"
-            className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200 shadow-lg transition duration-330 ease-in-out transform hover:scale-105"
-          >
-            Join as Recruiter
+            Join Us
           </Link>
         </div>
 
