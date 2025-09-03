@@ -54,6 +54,12 @@ const MyApplications = () => {
                 Status: {app.status}
               </p>
               <p className="text-sm text-gray-500 mt-2">Applied on: {new Date(app.createdAt).toLocaleDateString()}</p>
+              <button
+                className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors duration-200"
+                onClick={() => navigate('/feedback', { state: { jobId: app.job?._id } })}
+              >
+                Submit Feedback
+              </button>
             </div>
           ))}
         </div>

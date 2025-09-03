@@ -2,7 +2,6 @@ import { Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import Navbar from "./components/Navbar";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Sidebar from "./components/Sidebar"; // Import Sidebar
 
 import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
@@ -27,7 +26,7 @@ function App() {
   return (
     <AuthProvider>
       <div className="flex">
-        {!hideNavAndSidebar && <Sidebar />}
+  {/* Sidebar removed */}
         <div className="flex-1 flex flex-col">
           {!hideNavAndSidebar && <Navbar />}
           <main className="flex-1 p-6 bg-gray-100">
@@ -47,6 +46,12 @@ function App() {
               <Route path="/student/dashboard" element={
                 <ProtectedRoute roles={["student"]}><StudentDashboard /></ProtectedRoute>
               } />
+              <Route path="/student/profile" element={
+                <ProtectedRoute roles={["student"]}><Profile /></ProtectedRoute>
+              } />
+              <Route path="/feedback" element={
+                <ProtectedRoute roles={["student","recruiter","admin"]}><SubmitFeedback /></ProtectedRoute>
+              } />
               <Route path="/student/applications" element={
                 <ProtectedRoute roles={["student"]}><MyApplications /></ProtectedRoute>
               } />
@@ -63,8 +68,15 @@ function App() {
                 <ProtectedRoute roles={["student","recruiter","admin"]}><PostDetails /></ProtectedRoute>
               } />
 
+import PostJob from "./pages/Recruiter/PostJob"; // Import PostJob component
               <Route path="/recruiter/dashboard" element={
                 <ProtectedRoute roles={["recruiter"]}><RecruiterDashboard /></ProtectedRoute>
+              } />
+              <Route path="/recruiter/job-applications" element={
+                <ProtectedRoute roles={["recruiter"]}><MyApplications /></ProtectedRoute>
+              } />
+              <Route path="/recruiter/edit-job" element={
+                <ProtectedRoute roles={["recruiter"]}><EditJob /></ProtectedRoute>
               } />
               <Route path="/recruiter/jobs/create" element={
                 <ProtectedRoute roles={["recruiter"]}><CreateJob /></ProtectedRoute>
@@ -78,6 +90,18 @@ function App() {
 
               <Route path="/admin/dashboard" element={
                 <ProtectedRoute roles={["admin"]}><AdminDashboard /></ProtectedRoute>
+              } />
+              <Route path="/admin/manage-users" element={
+                <ProtectedRoute roles={["admin"]}><AdminDashboard section="users" /></ProtectedRoute>
+              } />
+              <Route path="/admin/manage-jobs" element={
+                <ProtectedRoute roles={["admin"]}><AdminDashboard section="jobs" /></ProtectedRoute>
+              } />
+              <Route path="/admin/manage-applications" element={
+                <ProtectedRoute roles={["admin"]}><AdminDashboard section="applications" /></ProtectedRoute>
+              } />
+              <Route path="/admin/view-feedback" element={
+                <ProtectedRoute roles={["admin"]}><AdminDashboard section="feedback" /></ProtectedRoute>
               } />
             </Routes>
           </main>
