@@ -51,70 +51,86 @@ function RecruiterDashboard() {
   if (error) return <p className="error-message text-red-500 text-center mt-4">{error}</p>;
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">My Posted Jobs</h1>
-      <button
-        onClick={() => navigate("/recruiter/jobs/create")}
-        className="mb-6 px-6 py-3 bg-green-600 text-white rounded-lg shadow-md hover:bg-green-700 transition duration-200 block mx-auto"
-      >
-        Create New Job
-      </button>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-100 p-6">
+      <div className="max-w-7xl mx-auto">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-8 leading-tight text-center">
+          My Posted <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Jobs</span>
+        </h1>
+        {error && <p className="bg-red-100 text-red-700 p-3 rounded-lg mb-6 text-center font-medium">{error}</p>}
+        <button
+          onClick={() => navigate("/recruiter/jobs/create")}
+          className="group inline-flex items-center justify-center mb-8 px-8 py-3 border border-transparent text-base font-semibold rounded-xl text-white bg-gradient-to-r from-green-500 to-teal-600 hover:from-green-600 hover:to-teal-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 mx-auto"
+        >
+          <span className="mr-2">✨</span>
+          Create New Job
+        </button>
 
-      {myJobs.length === 0 ? (
-        <p className="text-center text-gray-600 text-lg">No jobs created yet.</p>
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {myJobs.map((job) => (
-            <div key={job._id} className="bg-white p-6 rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-shadow duration-200">
-              <h2 className="text-xl font-semibold text-gray-900 mb-2">{job.title}</h2>
-              <p className="text-gray-700 mb-4">{job.description}</p>
-              <p className="text-gray-600 text-sm mb-1">Location: {job.location}</p>
-              <p className="text-gray-600 text-sm mb-1">Salary: {job.salary}</p>
-              <p className="text-gray-600 text-sm mb-4">CGPA Criteria: {job.criteria_cgpa}+</p>
-              <div className="flex flex-wrap gap-3">
-                <button
-                  onClick={() => navigate(`/job/${job._id}`)}
-                  className="px-4 py-2 bg-blue-500 text-white rounded-md text-sm hover:bg-blue-600 transition duration-200"
-                >
-                  View Details
-                </button>
-                <button
-                  onClick={() => navigate(`/recruiter/jobs/edit/${job._id}`)}
-                  className="px-4 py-2 bg-yellow-500 text-white rounded-md text-sm hover:bg-yellow-600 transition duration-200"
-                >
-                  Edit Job
-                </button>
-                <button
-                  onClick={() => handleDeleteJob(job._id)}
-                  className="px-4 py-2 bg-red-500 text-white rounded-md text-sm hover:bg-red-600 transition duration-200"
-                >
-                  Delete Job
-                </button>
-                <button
-                  onClick={() => navigate(`/recruiter/applications?jobId=${job._id}`)}
-                  className="px-4 py-2 bg-purple-600 text-white rounded-md text-sm hover:bg-purple-700 transition duration-200"
-                >
-                  Manage Applications
-                </button>
+        {myJobs.length === 0 ? (
+          <div className="text-center py-12 bg-white rounded-2xl shadow-xl border border-blue-100">
+            <div className="text-6xl mb-4">🤷‍♀️</div>
+            <h3 className="text-2xl font-extrabold text-gray-900 mb-2">No Jobs Posted Yet</h3>
+            <p className="text-gray-600 text-lg">Start by creating your first job posting!</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {myJobs.map((job) => (
+              <div key={job._id} className="bg-white p-6 rounded-2xl shadow-xl border border-blue-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                <h2 className="text-xl font-extrabold text-gray-900 mb-2">{job.title}</h2>
+                <p className="text-gray-700 text-base mb-4 line-clamp-3">{job.description}</p>
+                <p className="text-gray-600 text-sm mb-1"><span className="font-semibold text-gray-800">Location:</span> {job.location}</p>
+                <p className="text-gray-600 text-sm mb-1"><span className="font-semibold text-gray-800">Salary:</span> {job.salary}</p>
+                <p className="text-gray-600 text-sm mb-4"><span className="font-semibold text-gray-800">CGPA Criteria:</span> {job.criteria_cgpa}+</p>
+                <div className="flex flex-wrap gap-3 mt-4 pt-4 border-t border-gray-100">
+                  <button
+                    onClick={() => navigate(`/job/${job._id}`)}
+                    className="flex-1 px-4 py-2 bg-blue-500 text-white rounded-lg text-sm hover:bg-blue-600 transition-colors duration-200 font-medium shadow-md"
+                  >
+                    View Details
+                  </button>
+                  <button
+                    onClick={() => navigate(`/recruiter/jobs/edit/${job._id}`)}
+                    className="flex-1 px-4 py-2 bg-yellow-500 text-white rounded-lg text-sm hover:bg-yellow-600 transition-colors duration-200 font-medium shadow-md"
+                  >
+                    Edit Job
+                  </button>
+                  <button
+                    onClick={() => handleDeleteJob(job._id)}
+                    className="flex-1 px-4 py-2 bg-red-500 text-white rounded-lg text-sm hover:bg-red-600 transition-colors duration-200 font-medium shadow-md"
+                  >
+                    Delete Job
+                  </button>
+                  <button
+                    onClick={() => navigate(`/recruiter/applications?jobId=${job._id}`)}
+                    className="flex-1 px-4 py-2 bg-purple-600 text-white rounded-lg text-sm hover:bg-purple-700 transition-colors duration-200 font-medium shadow-md"
+                  >
+                    Manage Applications
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
-      )}
+            ))}
+          </div>
+        )}
 
-      {pages > 1 && (
-        <div className="flex justify-center mt-8 space-x-2">
-          {[...Array(pages).keys()].map((x) => (
-            <button
-              key={x + 1}
-              onClick={() => setCurrentPage(x + 1)}
-              className={`px-4 py-2 rounded-md ${x + 1 === currentPage ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-800 hover:bg-gray-300"}`}
-            >
-              {x + 1}
-            </button>
-          ))}
-        </div>
-      )}
+        {pages > 1 && (
+          <div className="flex justify-center mt-10">
+            <div className="flex items-center space-x-1 bg-blue-50 rounded-lg shadow-md border border-blue-100 p-1">
+              {[...Array(pages).keys()].map((x) => (
+                <button
+                  key={x + 1}
+                  onClick={() => setCurrentPage(x + 1)}
+                  className={`px-4 py-2 rounded-lg text-base font-semibold transition-colors duration-200 ${
+                    x + 1 === currentPage
+                      ? "bg-blue-600 text-white shadow-md"
+                      : "text-blue-700 hover:bg-white hover:shadow-sm"
+                  }`}
+                >
+                  {x + 1}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

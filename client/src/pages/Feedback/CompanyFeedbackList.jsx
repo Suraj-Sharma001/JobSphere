@@ -44,28 +44,38 @@ function CompanyFeedbackList() {
   if (error) return <p className="error-message text-red-500 text-center mt-4">{error}</p>;
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">Company Feedback</h1>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-100 p-6">
+      <div className="max-w-7xl mx-auto">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-10 leading-tight text-center">
+          Company <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Feedback</span>
+        </h1>
 
-      {Object.keys(feedbackByCompany).length === 0 ? (
-        <p className="text-center text-gray-600 text-lg">No feedback available yet.</p>
-      ) : (
-        <div className="space-y-8">
-          {Object.entries(feedbackByCompany).map(([companyName, feedbacks]) => (
-            <div key={companyName} className="bg-white p-6 rounded-lg shadow-md border border-gray-200">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-4">{companyName}</h2>
-              <div className="space-y-4">
-                {feedbacks.map((f) => (
-                  <div key={f._id} className="border-l-4 border-blue-500 pl-4 py-2">
-                    <p className="text-gray-800 text-base mb-1">{f.feedback_text}</p>
-                    <p className="text-sm text-gray-600">- {f.student?.name || 'Anonymous'} on {new Date(f.createdAt).toLocaleDateString()}</p>
-                  </div>
-                ))}
+        {error && <p className="bg-red-100 text-red-700 p-3 rounded-lg mb-6 text-center font-medium">{error}</p>}
+
+        {Object.keys(feedbackByCompany).length === 0 ? (
+          <div className="text-center py-12 bg-white rounded-2xl shadow-xl border border-blue-100">
+            <div className="text-6xl mb-4">📝</div>
+            <h3 className="text-2xl font-extrabold text-gray-900 mb-2">No Feedback Available Yet</h3>
+            <p className="text-gray-600 text-lg">Companies will appreciate your insights!</p>
+          </div>
+        ) : (
+          <div className="space-y-8">
+            {Object.entries(feedbackByCompany).map(([companyName, feedbacks]) => (
+              <div key={companyName} className="bg-white p-8 rounded-2xl shadow-xl border border-blue-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                <h2 className="text-2xl font-extrabold text-gray-900 mb-6">{companyName}</h2>
+                <div className="space-y-5">
+                  {feedbacks.map((f) => (
+                    <div key={f._id} className="border-l-4 border-blue-400 pl-4 py-3 bg-gray-50 rounded-xl">
+                      <p className="text-gray-800 text-base mb-1 leading-relaxed">{f.feedback_text}</p>
+                      <p className="text-sm text-gray-600 font-medium">- <span className="text-blue-600">@{f.student?.name || 'Anonymous'}</span> on {new Date(f.createdAt).toLocaleDateString()}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
-      )}
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

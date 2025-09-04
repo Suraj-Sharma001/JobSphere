@@ -46,15 +46,17 @@ const CreateJob = () => {
   };
 
   return (
-    <div className="container mx-auto p-4 bg-gray-100 min-h-screen">
-      <div className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-md mt-10">
-        <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">Post New Job</h2>
-        {error && <p className="text-red-500 text-center mb-4">{error}</p>}
-        {success && <p className="text-green-500 text-center mb-4">Job Created Successfully!</p>}
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-100 flex items-center justify-center p-6">
+      <div className="max-w-3xl w-full bg-white rounded-2xl shadow-xl border border-blue-100 p-8 md:p-10">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-center text-gray-900 mb-8 leading-tight">
+          Post a New <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Job</span>
+        </h2>
+        {error && <p className="bg-red-100 text-red-700 p-3 rounded-lg mb-6 text-center font-medium">{error}</p>}
+        {success && <p className="bg-green-100 text-green-700 p-3 rounded-lg mb-6 text-center font-medium">Job Created Successfully! 🎉</p>}
         {loading && <Loader />}
         <form onSubmit={submitHandler} className="space-y-6">
           <div>
-            <label htmlFor="title" className="block text-sm font-medium text-gray-700">Job Title</label>
+            <label htmlFor="title" className="block text-sm font-semibold text-gray-700 mb-2">Job Title</label>
             <input
               type="text"
               id="title"
@@ -62,11 +64,11 @@ const CreateJob = () => {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-800"
             />
           </div>
           <div>
-            <label htmlFor="description" className="block text-sm font-medium text-gray-700">Description</label>
+            <label htmlFor="description" className="block text-sm font-semibold text-gray-700 mb-2">Description</label>
             <textarea
               id="description"
               placeholder="Enter job description"
@@ -74,11 +76,11 @@ const CreateJob = () => {
               onChange={(e) => setDescription(e.target.value)}
               required
               rows="4"
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-800"
             ></textarea>
           </div>
           <div>
-            <label htmlFor="criteriaBranch" className="block text-sm font-medium text-gray-700">Required Branch</label>
+            <label htmlFor="criteriaBranch" className="block text-sm font-semibold text-gray-700 mb-2">Required Branch</label>
             <input
               type="text"
               id="criteriaBranch"
@@ -86,11 +88,11 @@ const CreateJob = () => {
               value={criteriaBranch}
               onChange={(e) => setCriteriaBranch(e.target.value)}
               required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-800"
             />
           </div>
           <div>
-            <label htmlFor="criteriaCgpa" className="block text-sm font-medium text-gray-700">Required CGPA</label>
+            <label htmlFor="criteriaCgpa" className="block text-sm font-semibold text-gray-700 mb-2">Required CGPA</label>
             <input
               type="number"
               id="criteriaCgpa"
@@ -99,11 +101,11 @@ const CreateJob = () => {
               onChange={(e) => setCriteriaCgpa(e.target.value)}
               required
               step="0.1"
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-800"
             />
           </div>
           <div>
-            <label htmlFor="location" className="block text-sm font-medium text-gray-700">Location</label>
+            <label htmlFor="location" className="block text-sm font-semibold text-gray-700 mb-2">Location</label>
             <input
               type="text"
               id="location"
@@ -111,25 +113,36 @@ const CreateJob = () => {
               value={location}
               onChange={(e) => setLocation(e.target.value)}
               required
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-800"
             />
           </div>
           <div>
-            <label htmlFor="salary" className="block text-sm font-medium text-gray-700">Salary</label>
+            <label htmlFor="salary" className="block text-sm font-semibold text-gray-700 mb-2">Salary</label>
             <input
               type="text"
               id="salary"
               placeholder="Enter salary (e.g., $50,000 - $70,000)"
               value={salary}
               onChange={(e) => setSalary(e.target.value)}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-800"
             />
           </div>
           <button
             type="submit"
-            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            className="w-full group inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-semibold rounded-xl text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 mt-8"
+            disabled={loading}
           >
-            Create Job
+            {loading ? (
+              <span className="flex items-center justify-center">
+                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Posting Job...
+              </span>
+            ) : (
+              <>Post Job</>
+            )}
           </button>
         </form>
       </div>
