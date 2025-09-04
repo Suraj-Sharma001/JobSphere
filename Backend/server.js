@@ -17,7 +17,7 @@ connectDB();
 
 const app = express();
 
-const allowedOrigins = [process.env.FRONTEND_URL, 'https://recrutment-portal.vercel.app/'];
+const allowedOrigins = [process.env.FRONTEND_URL];
 const corsOptions = {
   origin: (origin, callback) => {
     if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
