@@ -11,7 +11,7 @@ const MyApplications = () => {
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [pages, setPages] = useState(1);
-  const [filter, setFilter] = useState('all'); // New filter state
+  const [filter, setFilter] = useState('all'); 
   const navigate = useNavigate();
 
   const fetchMyApplications = useCallback(async () => {
