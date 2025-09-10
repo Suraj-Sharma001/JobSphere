@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // const API = axios.create({ baseURL: process.env.REACT_APP_API_URL || "http://localhost:5173" });
-const API = axios.create({ baseURL: import.meta.env.VITE_FRONTEND_URL });
+const API = axios.create({ baseURL: import.meta.env.VITE_BACKEND_URL });
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("userInfo")) {
