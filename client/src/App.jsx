@@ -19,8 +19,9 @@ import Home from "./pages/Home"; // Import Home component
 import ManageApplications from "./pages/Recruiter/ManageApplications"; // Import ManageApplications component
 import CompanyFeedbackList from "./pages/Feedback/CompanyFeedbackList"; // Import CompanyFeedbackList
 import PostDetails from "./pages/Community/PostDetails"; // Import PostDetails
+import About from "./pages/About/About"
 
-function App() {
+function App() {  
   const hideNavAndSidebar = window.location.pathname === "/login" || window.location.pathname === "/register";
 
   return (
@@ -34,6 +35,7 @@ function App() {
               <Route path="/" element={<Home />} /> {/* Public Home page */}
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
+              <Route path="/about" element={<About />} />
 
               <Route path="/profile" element={
                 <ProtectedRoute roles={["student","recruiter","admin"]}><Profile /></ProtectedRoute>
@@ -103,6 +105,7 @@ import PostJob from "./pages/Recruiter/PostJob"; // Import PostJob component
               <Route path="/admin/view-feedback" element={
                 <ProtectedRoute roles={["admin"]}><AdminDashboard section="feedback" /></ProtectedRoute>
               } />
+              
             </Routes>
           </main>
         </div>

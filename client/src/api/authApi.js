@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: "https://jobsphere-v9aw.onrender.com"});
+// const API = axios.create({ baseURL: process.env.REACT_APP_API_URL || "http://localhost:5173" });
+const API = axios.create({ baseURL: "http://localhost:5000" });
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("userInfo")) {
@@ -9,7 +10,7 @@ API.interceptors.request.use((req) => {
   return req;
 });
 
-export const registerUser = (formData) => API.post("/auth/register", formData);
-export const loginUser = (formData) => API.post("/auth/login", formData);
-export const getUserProfile = () => API.get("/users/profile");
-export const updateUserProfile = (userData) => API.put("/users/profile", userData);
+export const registerUser = (formData) => API.post("/api/auth/register", formData);
+export const loginUser = (formData) => API.post("/api/auth/login", formData);
+export const getUserProfile = () => API.get("/api/users/profile");
+export const updateUserProfile = (userData) => API.put("/api/users/profile", userData);

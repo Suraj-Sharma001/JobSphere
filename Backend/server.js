@@ -20,13 +20,13 @@ const app = express();
 const allowedOrigins = [process.env.FRONTEND_URL];
 const corsOptions = {
   origin: (origin, callback) => {
-    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+    if (allowedOrigins.includes(origin) || !origin) {
       callback(null, true);
     } else {
-      callback(new Error('Not allowed by CORS'));
+      callback(new Error("Not allowed by CORS"));
     }
   },
-  credentials: true, // Add this line to allow credentials
+  credentials: true,
 };
 app.use(cors(corsOptions));
 
