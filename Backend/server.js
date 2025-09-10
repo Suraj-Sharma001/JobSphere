@@ -17,13 +17,25 @@ connectDB();
 
 const app = express();
 
-const allowedOrigins = [process.env.FRONTEND_URL];
+const allowedOrigins = [
+  process.env.FRONTEND_URL,
+  'http://localhost:5173',
+  'http://localhost:3000',
+  'https://job-sphere-six.vercel.app',
+  'https://*.vercel.app', // Allow Vercel preview deployments
+];
 const corsOptions = {
-  origin: (origin, callback) => {
-    if (allowedOrigins.includes(origin) || !origin) {
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps, curl, etc.)
+    if (!origin) return callback(null, true);
+    // Check for allowed origins and Vercel preview URLs
+    if (
+      allowedOrigins.includes(origin) ||
+      /https:\/\/.*\.vercel\.app$/.test(origin)
+    ) {
       callback(null, true);
     } else {
-      callback(new Error("Not allowed by CORS"));
+      callback(new Error('Not allowed by CORS'));
     }
   },
   credentials: true,
