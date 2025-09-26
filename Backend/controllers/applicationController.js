@@ -6,7 +6,8 @@ import Job from '../models/Job.js';
 // @route   POST /api/applications/:jobId
 // @access  Private/Student
 const applyJob = asyncHandler(async (req, res) => {
-  if (req.user.role !== 'student') {
+  if (req.user.role !== 'student')
+  {
     res.status(403);
     throw new Error('Only students can apply for jobs');
   }
@@ -21,6 +22,8 @@ const applyJob = asyncHandler(async (req, res) => {
   const existingApplication = await Application.findOne({
     student: req.user.id,
     job: job._id,
+
+    
   });
 
   if (existingApplication) {
