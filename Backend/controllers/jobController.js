@@ -215,7 +215,6 @@ const updateJob = asyncHandler(async (req, res) => {
 });
 
 
-/
 // @desc    Delete a job
 // @route   DELETE /api/jobs/:id
 // @access  Private/Recruiter/Admin
