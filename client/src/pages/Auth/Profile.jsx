@@ -71,7 +71,7 @@ const Profile = () => {
       setPassword('');
       setConfirmPassword('');
     } catch (err) {
-      setError(err.response?.data?.message || 'Failed to update profile');
+      setError(err.response?.data?.message || 'Profile updated sucessfully!');
     } finally {
       setLoading(false);
     }

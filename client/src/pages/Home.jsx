@@ -15,7 +15,7 @@ const Home = () => {
             {/* Main Heading */}
             <div className="mb-8">
               <span className="inline-block px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold mb-4">
-                🚀 Welcome to the Future of Campus Placements
+                Welcome to the Graphic Era Placements Portal
               </span>
               <h1 className="text-4xl md:text-6xl font-extrabold text-gray-900 mb-6 leading-tight">
                 Your Gateway to{' '}
@@ -50,25 +50,6 @@ const Home = () => {
               </Link>
             </div>
 
-            {/* Stats Section */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20">
-              <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-blue-600 mb-2">10K+</div>
-                <div className="text-gray-600 font-medium">Students Placed</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-indigo-600 mb-2">500+</div>
-                <div className="text-gray-600 font-medium">Partner Companies</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-purple-600 mb-2">100+</div>
-                <div className="text-gray-600 font-medium">Colleges</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold text-green-600 mb-2">95%</div>
-                <div className="text-gray-600 font-medium">Success Rate</div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -210,31 +191,13 @@ const Home = () => {
         </div>
       </div>
 
-      {/* CTA Section */}
-      <div className="py-20 bg-gradient-to-r from-blue-600 to-indigo-600">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Ready to Transform Your Career?
-          </h2>
-          <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Join thousands of students who have already found their dream jobs through our platform
-          </p>
-          <Link
-            to="/register"
-            className="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-lg font-semibold rounded-xl text-blue-600 bg-white hover:bg-gray-50 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-          >
-            <span className="mr-2">🎯</span>
-            Start Your Journey Now
-          </Link>
-        </div>
-      </div>
 
       {/* Footer */}
       <div className="bg-gray-900 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <p className="text-gray-400 mb-4">
-              © 2024 Campus Placement System. Built with ❤️ for students, by students.
+              © 2025 Graphic Era Placement System. Built with ❤️ for students, by students.
             </p>
             <div className="flex justify-center space-x-6">
               <Link to="/privacy" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</Link>

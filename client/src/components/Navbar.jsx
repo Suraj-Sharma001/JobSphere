@@ -27,21 +27,21 @@ function Navbar() {
   // Dashboard links by role
   const dashboardLinks = {
     admin: [
-      { to: '/admin/dashboard', label: 'Admin Dashboard', icon: '⚡' },
-      { to: '/community', label: 'Community', icon: '👥' },
+      { to: '/admin/dashboard', label: 'Admin Dashboard'},
+      { to: '/community', label: 'Community' },
     ],
     recruiter: [
-      { to: '/recruiter/dashboard', label: 'Company Dashboard', icon: '🏢' },
-      { to: '/recruiter/jobs/create', label: 'Post New Job', icon: '✏️' },
-      { to: '/recruiter/applications', label: 'Manage Applications', icon: '📋' },
-      { to: '/community', label: 'Community', icon: '👥' },
+      { to: '/recruiter/dashboard', label: 'Company Dashboard' },
+      { to: '/recruiter/jobs/create', label: 'Post New Job' },
+      { to: '/recruiter/applications', label: 'Manage Applications' },
+      { to: '/community', label: 'Community' },
     ],
     student: [
-      { to: '/student/dashboard', label: 'Dashboard', icon: '📊' },
-      { to: '/student/applications', label: 'Job Applications', icon: '📝' },
-      { to: '/profile', label: 'Profile & Resume', icon: '👤' },
-      { to: '/community', label: 'Community', icon: '👥' },
-      { to: '/student/feedback', label: 'Submit Feedback', icon: '💬' },
+      { to: '/student/dashboard', label: 'Dashboard' },
+      { to: '/student/applications', label: 'Job Applications' },
+      { to: '/profile', label: 'Profile & Resume' },
+      { to: '/community', label: 'Community' },
+      { to: '/student/feedback', label: 'Submit Feedback'},
     ],
   };
 

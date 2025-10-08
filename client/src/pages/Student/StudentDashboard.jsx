@@ -87,97 +87,18 @@ function StudentDashboard() {
         <div className="mb-10 pt-8">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-2 leading-tight">
+              <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-2 leading-tight">
                 Welcome back,{' '}
                 <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
                   {user?.name || 'Student'}
                 </span>
-                ! 👋
-              </h1>
+                ! 
+              </h2>
               <p className="text-gray-600 text-lg md:text-xl">Track your placement journey and discover new opportunities</p>
-            </div>
-            <div className="mt-6 sm:mt-0">
-              <Link 
-                to="/my-applications" 
-                className="group inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-semibold rounded-xl text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-              >
-                <span className="mr-2">📋</span>
-                My Applications
-              </Link>
             </div>
           </div>
         </div>
 
-        {/* Enhanced Overview Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-          <div className="bg-white p-6 rounded-2xl shadow-xl border border-blue-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-gray-500 text-sm font-medium">Applications Sent</p>
-                <p className="text-3xl font-bold text-gray-800 mt-1">
-                  12 
-                  <span className="text-green-500 text-sm ml-2 bg-green-50 px-2 py-1 rounded-full">
-                    ↗️ +3 this week
-                  </span>
-                </p>
-              </div>
-              <div className="bg-blue-100 p-3 rounded-full">
-                <span className="text-blue-600 text-2xl">🚀</span>
-              </div>
-            </div>
-          </div>
-          
-          <div className="bg-white p-6 rounded-2xl shadow-xl border border-blue-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-gray-500 text-sm font-medium">Shortlisted</p>
-                <p className="text-3xl font-bold text-gray-800 mt-1">
-                  4 
-                  <span className="text-yellow-600 text-sm ml-2 bg-yellow-50 px-2 py-1 rounded-full">
-                    ⭐ 33% rate
-                  </span>
-                </p>
-              </div>
-              <div className="bg-yellow-100 p-3 rounded-full">
-                <span className="text-yellow-600 text-2xl">📋</span>
-              </div>
-            </div>
-          </div>
-          
-          <div className="bg-white p-6 rounded-2xl shadow-xl border border-blue-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-gray-500 text-sm font-medium">Interviews</p>
-                <p className="text-3xl font-bold text-gray-800 mt-1">
-                  2 
-                  <span className="text-green-600 text-sm ml-2 bg-green-50 px-2 py-1 rounded-full">
-                    🗓️ 1 upcoming
-                  </span>
-                </p>
-              </div>
-              <div className="bg-green-100 p-3 rounded-full">
-                <span className="text-green-600 text-2xl">🤝</span>
-              </div>
-            </div>
-          </div>
-          
-          <div className="bg-white p-6 rounded-2xl shadow-xl border border-blue-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-gray-500 text-sm font-medium">Profile Score</p>
-                <p className="text-3xl font-bold text-gray-800 mt-1">
-                  85%
-                  <span className="text-blue-600 text-sm ml-2 bg-blue-50 px-2 py-1 rounded-full">
-                    ✅ Complete
-                  </span>
-                </p>
-              </div>
-              <div className="bg-indigo-100 p-3 rounded-full">
-                <span className="text-indigo-600 text-2xl">👤</span>
-              </div>
-            </div>
-          </div>
-        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           {/* Enhanced Available Opportunities */}
@@ -249,14 +170,14 @@ function StudentDashboard() {
                         onClick={handleFilter}
                         className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-3 rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 font-semibold shadow-md hover:shadow-lg transform hover:scale-105"
                       >
-                        🔍 Apply Filters
+                        Apply Filters
                       </button>
                       {hasActiveFilters && (
                         <button
                           onClick={clearFilters}
                           className="text-gray-600 text-sm hover:text-gray-800 transition-colors font-medium"
                         >
-                          ✖️ Clear All
+                           Clear All
                         </button>
                       )}
                     </div>
@@ -386,12 +307,6 @@ function StudentDashboard() {
                   className="block w-full text-left p-3 text-base text-blue-700 hover:bg-white hover:shadow-md rounded-lg transition-colors duration-200 font-medium border border-blue-100 hover:border-blue-200"
                 >
                   📝 Update Profile
-                </Link>
-                <Link 
-                  to="/resume" 
-                  className="block w-full text-left p-3 text-base text-blue-700 hover:bg-white hover:shadow-md rounded-lg transition-colors duration-200 font-medium border border-blue-100 hover:border-blue-200"
-                >
-                  📄 Upload Resume
                 </Link>
                 <Link 
                   to="/feedback" 

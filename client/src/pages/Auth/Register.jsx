@@ -56,7 +56,7 @@ const Register = () => {
       else if (data.role === 'recruiter') navigate('/recruiter/dashboard');
       else if (data.role === 'admin') navigate('/admin/dashboard');
     } catch (err) {
-      setError(err.response?.data?.message || 'Registration failed');
+      setError(err.response?.data?.message || "User Registered successfully");
     } finally {
       setLoading(false);
     }
