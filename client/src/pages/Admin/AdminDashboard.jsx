@@ -1,5 +1,14 @@
-import { useEffect, useState, useContext, useCallback } from "react";
-import { AuthContext } from "../../context/AuthContext";
+import {
+  useEffect,
+  useState, 
+  useContext,
+  useCallback 
+} from "react";
+
+import {
+  AuthContext
+} from "../../context/AuthContext";
+
 import {
   getAllUsers,
   deleteUser,
@@ -14,6 +23,9 @@ import { useNavigate } from "react-router-dom";
 import Loader from "../../components/Loader";
 
 function AdminDashboard() {
+
+  // Context + Navigation
+  
   const { user } = useContext(AuthContext);
   const [users, setUsers] = useState([]);
   const [jobs, setJobs] = useState([]);
@@ -150,6 +162,8 @@ function AdminDashboard() {
       }
     }
   };
+
+  // Render
 
   if (loading) return <Loader />;
   if (error) return <p className="error-message text-red-500 text-center mt-4">{error}</p>;

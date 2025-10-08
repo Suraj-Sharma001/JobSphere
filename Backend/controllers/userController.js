@@ -30,7 +30,9 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     user.resume_link = req.body.resume_link || user.resume_link;
     user.company_name = req.body.company_name || user.company_name;
 
-    if (req.body.password) {
+    if (req.body.password)
+    
+    {
       user.password = req.body.password;
     }
 
@@ -51,6 +53,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     res.status(404);
     throw new Error('User not found');
   }
+  
 });
 
 export { getUserProfile, updateUserProfile };

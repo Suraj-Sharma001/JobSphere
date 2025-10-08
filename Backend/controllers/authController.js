@@ -7,7 +7,15 @@ import generateToken from '../utils/generateToken.js';
 // @route   POST /api/auth/register
 // @access  Public
 const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, password, role, branch, cgpa, resume_link, company_name } = req.body;
+  const { name,
+         email,
+         password,
+         role,
+         branch,
+         cgpa,
+         resume_link,
+         company_name
+        } = req.body;
 
   const userExists = await User.findOne({ email });
 
@@ -49,7 +57,10 @@ const registerUser = asyncHandler(async (req, res) => {
 // @route   POST /api/auth/login
 // @access  Public
 const authUser = asyncHandler(async (req, res) => {
-  const { email, password } = req.body;
+  const {
+    email,
+    password
+  } = req.body;
 
   const user = await User.findOne({ email });
 
@@ -71,4 +82,7 @@ const authUser = asyncHandler(async (req, res) => {
   }
 });
 
-export { registerUser, authUser };
+export {
+  registerUser, 
+  authUser
+};

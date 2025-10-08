@@ -1,9 +1,12 @@
 import jwt from 'jsonwebtoken';
+
 import asyncHandler from 'express-async-handler';
+
 import User from '../models/User.js';
 
 const protect = asyncHandler(async (req, res, next) => {
-  const authHeader = req.headers.authorization;
+
+ const authHeader = req.headers.authorization;
   let token;
 
   if (authHeader?.startsWith('Bearer')) {
@@ -15,6 +18,7 @@ const protect = asyncHandler(async (req, res, next) => {
       if (!req.user) {
         res.status(401);
         throw new Error('Not authorized, user not found');
+
       }
 
       next();
@@ -27,16 +31,22 @@ const protect = asyncHandler(async (req, res, next) => {
     res.status(401);
     throw new Error('Not authorized, no token');
   }
+
 });
 
 const authorize = (...roles) => {
+
   return (req, res, next) => {
+
     if (!roles.includes(req.user.role)) {
-      res.status(403);
-      throw new Error(`Role "${req.user.role}" not authorized`);
+
+res.status(403);
+
+ throw new Error(`Role "${req.user.role}" not authorized`);
     }
     next();
   };
+
 };
 
 export { protect, authorize };
