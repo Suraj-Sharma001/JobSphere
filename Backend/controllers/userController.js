@@ -2,9 +2,6 @@ import asyncHandler from 'express-async-handler';
 import User from '../models/User.js';
 import generateToken from '../utils/generateToken.js';
 
-// @desc    Get user profile
-// @route   GET /api/users/profile
-// @access  Private
 const getUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user.id).select('-password');
 
@@ -16,9 +13,6 @@ const getUserProfile = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc    Update user profile
-// @route   PUT /api/users/profile
-// @access  Private
 const updateUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user.id);
 
