@@ -1,7 +1,9 @@
 import axios from "axios";
 
 // Use Vite env var for backend URL, fallback to localhost
-const API = axios.create({ baseURL: (import.meta.env.VITE_BACKEND_URL || "http://localhost:5000") + "/api" });
+const rawBackendFb = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
+const backendFb = rawBackendFb.replace(/\/+$/g, '');
+const API = axios.create({ baseURL: backendFb + "/api" });
 
 API.interceptors.request.use((req) => {
   try {
@@ -12,8 +14,8 @@ API.interceptors.request.use((req) => {
         req.headers.Authorization = `Bearer ${parsed.token}`;
       }
     }
-  } catch (err) {
-    // ignore
+  } catch {
+    // ignore parse errors
   }
   return req;
 });
