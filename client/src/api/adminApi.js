@@ -1,9 +1,19 @@
 import axios from "axios";
-const API = axios.create({ baseURL: "http://localhost:5000/api" });
+
+// Use Vite env var for backend URL
+const API = axios.create({ baseURL: (import.meta.env.VITE_BACKEND_URL || "http://localhost:5000") + "/api" });
 
 API.interceptors.request.use((req) => {
-  if (localStorage.getItem("userInfo")) {
-    req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem("userInfo")).token}`;
+  try {
+    const userInfo = localStorage.getItem("userInfo");
+    if (userInfo) {
+      const parsed = JSON.parse(userInfo);
+      if (parsed && parsed.token) {
+        req.headers.Authorization = `Bearer ${parsed.token}`;
+      }
+    }
+  } catch (err) {
+    // ignore
   }
   return req;
 });

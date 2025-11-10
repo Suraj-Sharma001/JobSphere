@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const API = axios.create({ baseURL: process.env.REACT_APP_API_URL || "http://localhost:5173" });
-const API = axios.create({ baseURL: "http://localhost:5000" });
+// Use Vite environment variable for backend URL, fallback to localhost during development
+const API = axios.create({ baseURL: import.meta.env.VITE_BACKEND_URL || "http://localhost:5000" });
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("userInfo")) {

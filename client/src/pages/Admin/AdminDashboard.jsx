@@ -63,9 +63,11 @@ function AdminDashboard() {
       setJobs(jobsData.jobs);
       setJobsPages(jobsData.pages);
 
-      const { data: feedbackData } = await getAllFeedback(feedbackPage, 10);
-      setFeedback(feedbackData?.feedbackList || []);
-      setFeedbackPages(feedbackData?.pages || 1);
+  const { data: feedbackData } = await getAllFeedback(feedbackPage, 10);
+  // backend adminController returns { feedback, page, pages, total }
+  // other endpoints return { feedbackList, pages } — handle both formats
+  setFeedback(feedbackData?.feedback || feedbackData?.feedbackList || []);
+  setFeedbackPages(feedbackData?.pages || 1);
 
       const { data: applicationsData } = await getAllApplications(applicationsPage, 10);
       setApplications(applicationsData?.applications || []);

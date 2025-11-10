@@ -9,7 +9,8 @@ const feedbackSchema = mongoose.Schema(
     },
     company_name: {
       type: String,
-      required: true,
+      required: false,
+      default: '',
     },
     feedback_text: {
       type: String,

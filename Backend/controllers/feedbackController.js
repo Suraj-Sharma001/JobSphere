@@ -9,20 +9,17 @@ const createFeedback = asyncHandler(async (req, res) => {
   }
 
 
-  const {
-    company_name,
-    feedback_text
-  } = req.body;
+  const { company_name, feedback_text } = req.body;
 
-
-  if (!company_name || !feedback_text) {
+  // feedback_text is required; company_name is optional
+  if (!feedback_text || feedback_text.trim().length === 0) {
     res.status(400);
-    throw new Error('Please provide both company name and feedback text');
+    throw new Error('Please provide feedback text');
   }
 
   const feedback = new Feedback({
-    student      : req.user.id,
-    company_name : company_name,
+    student: req.user.id,
+    company_name: company_name || '',
     feedback_text: feedback_text,
   });
 
@@ -47,9 +44,7 @@ const getMyFeedback = asyncHandler(async (req, res) => {
   // ----------------------------------------------------------------
   const studentId = req.user.id;
 
-  const feedback = await Feedback.find({
-    user: studentId
-  });
+  const feedback = await Feedback.find({ student: studentId });
 
   // ----------------------------------------------------------------
   // Step 3: Return the feedback list
