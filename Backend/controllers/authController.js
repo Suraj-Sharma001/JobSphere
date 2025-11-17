@@ -17,6 +17,21 @@ const registerUser = asyncHandler(async (req, res) => {
          company_name
         } = req.body;
 
+  // If registering as admin, require the ADMIN_SECRET_KEY env value or admin_key
+  if (role === 'admin') {
+    const { admin_key } = req.body;
+    const secret = process.env.ADMIN_SECRET_KEY;
+    if (!secret) {
+      res.status(500);
+      throw new Error('Server misconfiguration: ADMIN_SECRET_KEY not set');
+    }
+    if (!admin_key || admin_key !== secret) {
+      res.status(400);
+      throw new Error('Invalid admin key');
+    }
+    // authorized via admin_key env secret; continue to create admin user
+  }
+
   const userExists = await User.findOne({ email });
 
   if (userExists) {
@@ -36,6 +51,7 @@ const registerUser = asyncHandler(async (req, res) => {
   });
 
   if (user) {
+    // No invite tokens to mark (admin creation authorized by env secret)
     res.status(201).json({
       _id: user._id,
       name: user.name,

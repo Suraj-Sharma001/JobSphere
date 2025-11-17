@@ -14,10 +14,11 @@ const Register = () => {
   const [cgpa, setCgpa] = useState('');
   const [resumeLink, setResumeLink] = useState('');
   const [companyName, setCompanyName] = useState('');
+  const [adminKey, setAdminKey] = useState('');
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const { user, dispatch } = useContext(AuthContext);
+  const { user, login } = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -36,9 +37,26 @@ const Register = () => {
       return;
     }
 
+    // Validate resume link for students (only allow Google Drive / Docs links)
+    const isValidDriveLink = (url) => {
+      if (!url) return true; // allow empty
+      try {
+        const s = url.trim();
+        const regex = /^(https?:\/\/)?(www\.)?(drive\.google\.com|docs\.google\.com)\/.*$/i;
+        return regex.test(s);
+      } catch (err) {
+        return false;
+      }
+    };
+
     setLoading(true);
     setError(null);
     try {
+      if (role === 'student' && resumeLink && !isValidDriveLink(resumeLink)) {
+        setError('Please provide a valid Google Drive or Google Docs share link for your resume.');
+        setLoading(false);
+        return;
+      }
       const userData = {
         name,
         email,
@@ -46,11 +64,12 @@ const Register = () => {
         role,
         ...(role === 'student' && { branch, cgpa: parseFloat(cgpa), resume_link: resumeLink }),
         ...(role === 'recruiter' && { company_name: companyName }),
+        ...(role === 'admin' && { admin_key: adminKey }),
       };
 
       const { data } = await registerUser(userData);
-      dispatch({ type: 'LOGIN', payload: data });
-      localStorage.setItem('userInfo', JSON.stringify(data));
+      // update context and storage
+      login(data);
       // Redirect based on new user role
       if (data.role === 'student') navigate('/student/dashboard');
       else if (data.role === 'recruiter') navigate('/recruiter/dashboard');
@@ -181,6 +200,21 @@ const Register = () => {
                 placeholder="Enter your company name"
                 value={companyName}
                 onChange={(e) => setCompanyName(e.target.value)}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-800"
+              />
+            </div>
+          )}
+
+          {role === 'admin' && (
+            <div>
+              <label htmlFor="adminKey" className="block text-sm font-semibold text-gray-700 mb-2">Admin Key</label>
+              <input
+                type="password"
+                id="adminKey"
+                placeholder="Enter admin secret key"
+                value={adminKey}
+                onChange={(e) => setAdminKey(e.target.value)}
+                required
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-800"
               />
             </div>

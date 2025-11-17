@@ -127,7 +127,13 @@ const ManageUsers = () => {
                           {userItem.role}
                         </span>
                       </td>
-                      <td className="py-4 px-6 text-right">
+                      <td className="py-4 px-6 text-right space-x-2">
+                        <button
+                          onClick={() => navigate(`/admin/users/${userItem._id}`)}
+                          className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg text-sm transition-colors duration-200 shadow-md mr-2"
+                        >
+                          View
+                        </button>
                         <button
                           onClick={() => handleDelete(userItem._id)}
                           className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg text-sm transition-colors duration-200 shadow-md"

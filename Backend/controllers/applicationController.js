@@ -19,6 +19,28 @@ const applyJob = asyncHandler(async (req, res) => {
     throw new Error('Job not found');
   }
 
+  // Eligibility checks: branch and CGPA
+  const student = req.user; // populated by protect middleware
+  const reqBranch = job.criteria_branch || '';
+  const reqCgpa = job.criteria_cgpa ? Number(job.criteria_cgpa) : 0;
+
+  if (reqBranch && reqBranch !== 'Any') {
+    const reqs = String(reqBranch).split(/[,|]/).map(s => s.trim().toLowerCase()).filter(Boolean);
+    const studBranch = (student.branch || '').toLowerCase();
+    if (reqs.length > 0 && !reqs.includes(studBranch)) {
+      res.status(403);
+      throw new Error('You do not meet the branch criteria for this job');
+    }
+  }
+
+  if (reqCgpa) {
+    const studCgpa = Number(student.cgpa || 0);
+    if (studCgpa < reqCgpa) {
+      res.status(403);
+      throw new Error('You do not meet the minimum CGPA requirement for this job');
+    }
+  }
+
   const existingApplication = await Application.findOne({
     student: req.user.id,
     job: job._id,

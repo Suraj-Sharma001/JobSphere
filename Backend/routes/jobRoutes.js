@@ -16,7 +16,7 @@ router.route('/myjobs').get(protect, authorize('recruiter'), getMyJobs);
 router
   .route('/:id')
   .get(protect, getJobById)
-  .put(protect, authorize(['recruiter', 'admin']), updateJob)
-  .delete(protect, authorize(['recruiter', 'admin']), deleteJob);
+  .put(protect, authorize('recruiter', 'admin'), updateJob)
+  .delete(protect, authorize('recruiter', 'admin'), deleteJob);
 
 export default router;

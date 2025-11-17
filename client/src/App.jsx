@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import Navbar from "./components/Navbar";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -11,6 +11,7 @@ import SubmitFeedback from "./pages/Feedback/SubmitFeedback";
 import CommunityBoard from "./pages/Community/CommunityBoard";
 import RecruiterDashboard from "./pages/Recruiter/RecruiterDashboard";
 import AdminDashboard from "./pages/Admin/AdminDashboard";
+import UserProfileAdmin from "./pages/Admin/UserProfileAdmin";
 import Profile from "./pages/Auth/Profile"; // Import Profile component
 import CreateJob from "./pages/Recruiter/CreateJob"; // Import CreateJob component
 import EditJob from "./pages/Recruiter/EditJob"; // Import EditJob component
@@ -22,7 +23,8 @@ import PostDetails from "./pages/Community/PostDetails"; // Import PostDetails
 import About from "./pages/About/About"
 
 function App() {  
-  const hideNavAndSidebar = window.location.pathname === "/login" || window.location.pathname === "/register";
+  const location = useLocation();
+  const hideNavAndSidebar = location.pathname === "/login" || location.pathname === "/register";
 
   return (
     <AuthProvider>
@@ -104,6 +106,9 @@ import PostJob from "./pages/Recruiter/PostJob"; // Import PostJob component
               } />
               <Route path="/admin/view-feedback" element={
                 <ProtectedRoute roles={["admin"]}><AdminDashboard section="feedback" /></ProtectedRoute>
+              } />
+              <Route path="/admin/users/:id" element={
+                <ProtectedRoute roles={["admin"]}><UserProfileAdmin /></ProtectedRoute>
               } />
               
             </Routes>

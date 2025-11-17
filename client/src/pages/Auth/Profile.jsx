@@ -17,7 +17,7 @@ const Profile = () => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  const { user, dispatch } = useContext(AuthContext);
+  const { user, login } = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -65,8 +65,8 @@ const Profile = () => {
         company_name: user.role === 'recruiter' ? companyName : undefined,
       };
       const { data } = await updateUserProfile(updatedData);
-      dispatch({ type: 'LOGIN', payload: data }); // Update user info in context
-      localStorage.setItem('userInfo', JSON.stringify(data));
+      // Update context and localStorage so other components see the updated profile immediately
+      login(data);
       setSuccess(true);
       setPassword('');
       setConfirmPassword('');

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function JobCard({ job, onApply }) {
+function JobCard({ job, onApply, isEligible = true }) {
   return (
     <div className="bg-white p-6 rounded-lg shadow-md border border-gray-200 flex flex-col hover:shadow-lg transition-shadow duration-200">
       <div className="flex justify-between items-start mb-4">
@@ -17,7 +17,9 @@ function JobCard({ job, onApply }) {
         ) : (
           <button
             onClick={() => onApply(job._id)}
-            className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700 transition duration-200"
+            disabled={!isEligible}
+            title={!isEligible ? 'You do not meet the eligibility criteria for this job' : 'Apply'}
+            className={`bg-blue-600 text-white px-4 py-2 rounded-md text-sm transition duration-200 ${!isEligible ? 'opacity-50 cursor-not-allowed hover:bg-blue-600' : 'hover:bg-blue-700'}`}
           >
             Apply
           </button>
