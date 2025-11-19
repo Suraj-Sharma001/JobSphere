@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: "https://jobsphere1.onrender.com",
   credentials: true,
 }
 

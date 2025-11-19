@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // Use Vite env var for backend URL
-const rawBackendAdmin = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
+const rawBackendAdmin = "https://jobsphere1.onrender.com";
 const backendAdmin = rawBackendAdmin.replace(/\/+$/g, '');
 const API = axios.create({ baseURL: backendAdmin + "/api" });
 
