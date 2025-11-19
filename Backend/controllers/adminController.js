@@ -4,9 +4,6 @@ import Job from '../models/Job.js';
 import Application from '../models/Application.js';
 import Feedback from '../models/Feedback.js';
 
-// @desc    Get all users
-// @route   GET /api/admin/users
-// @access  Private/Admin
 const getAllUsers = asyncHandler(async (req, res) => {
   const pageSize = Number(req.query.limit) || 10;
   const page = Number(req.query.page) || 1;
@@ -31,9 +28,7 @@ const getAllUsers = asyncHandler(async (req, res) => {
   });
 });
 
-// @desc    Get user by ID
-// @route   GET /api/admin/users/:id
-// @access  Private/Admin
+
 const getUserById = asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id).select('-password');
   if (user) {
@@ -44,9 +39,7 @@ const getUserById = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc    Update user
-// @route   PUT /api/admin/users/:id
-// @access  Private/Admin
+
 const updateUser = asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id);
 
@@ -77,9 +70,7 @@ const updateUser = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc    Delete user
-// @route   DELETE /api/admin/users/:id
-// @access  Private/Admin
+
 const deleteUser = asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id);
 
@@ -92,9 +83,7 @@ const deleteUser = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc    Get all jobs
-// @route   GET /api/admin/jobs
-// @access  Private/Admin
+
 const getAllJobs = asyncHandler(async (req, res) => {
   const pageSize = Number(req.query.limit) || 10;
   const page = Number(req.query.page) || 1;
@@ -121,9 +110,7 @@ const getAllJobs = asyncHandler(async (req, res) => {
   });
 });
 
-// @desc    Delete job
-// @route   DELETE /api/admin/jobs/:id
-// @access  Private/Admin
+
 const deleteJob = asyncHandler(async (req, res) => {
   const job = await Job.findById(req.params.id);
 
@@ -136,9 +123,7 @@ const deleteJob = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc    Get all feedback
-// @route   GET /api/admin/feedback
-// @access  Private/Admin
+
 const getAllFeedback = asyncHandler(async (req, res) => {
   const pageSize = Number(req.query.limit) || 10;
   const page = Number(req.query.page) || 1;
@@ -157,9 +142,6 @@ const getAllFeedback = asyncHandler(async (req, res) => {
   });
 });
 
-// @desc    Delete feedback
-// @route   DELETE /api/admin/feedback/:id
-// @access  Private/Admin
 const deleteFeedback = asyncHandler(async (req, res) => {
   const feedback = await Feedback.findById(req.params.id);
 
@@ -172,9 +154,6 @@ const deleteFeedback = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc    Get all applications
-// @route   GET /api/admin/applications
-// @access  Private/Admin
 const getAllApplications = asyncHandler(async (req, res) => {
   const pageSize = Number(req.query.limit) || 10;
   const page = Number(req.query.page) || 1;

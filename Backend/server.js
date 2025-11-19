@@ -26,9 +26,7 @@ const allowedOrigins = [
 ];
 const corsOptions = {
   origin: function (origin, callback) {
-    // Allow requests with no origin (like mobile apps, curl, etc.)
     if (!origin) return callback(null, true);
-    // Check for allowed origins and Vercel preview URLs
     if (
       allowedOrigins.includes(origin) ||
       /https:\/\/.*\.vercel\.app$/.test(origin)

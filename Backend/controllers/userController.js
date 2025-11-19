@@ -97,7 +97,6 @@ const updateUserById = asyncHandler(async (req, res) => {
     }
   });
 
-  // Do not allow password changes here by admin; owners can change via their profile endpoint only if they provide password in dedicated flow
   if (!isAdmin && req.body.password) {
     user.password = req.body.password;
   }

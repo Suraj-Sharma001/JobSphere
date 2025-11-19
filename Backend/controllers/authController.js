@@ -29,7 +29,6 @@ const registerUser = asyncHandler(async (req, res) => {
       res.status(400);
       throw new Error('Invalid admin key');
     }
-    // authorized via admin_key env secret; continue to create admin user
   }
 
   const userExists = await User.findOne({ email });
@@ -51,7 +50,6 @@ const registerUser = asyncHandler(async (req, res) => {
   });
 
   if (user) {
-    // No invite tokens to mark (admin creation authorized by env secret)
     res.status(201).json({
       _id: user._id,
       name: user.name,
@@ -69,9 +67,6 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc    Auth user & get token
-// @route   POST /api/auth/login
-// @access  Public
 const authUser = asyncHandler(async (req, res) => {
   const {
     email,

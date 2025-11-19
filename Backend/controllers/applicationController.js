@@ -2,9 +2,6 @@ import asyncHandler from 'express-async-handler';
 import Application from '../models/Application.js';
 import Job from '../models/Job.js';
 
-// @desc    Apply for a job
-// @route   POST /api/applications/:jobId
-// @access  Private/Student
 const applyJob = asyncHandler(async (req, res) => {
   if (req.user.role !== 'student')
   {
@@ -19,7 +16,6 @@ const applyJob = asyncHandler(async (req, res) => {
     throw new Error('Job not found');
   }
 
-  // Eligibility checks: branch and CGPA
   const student = req.user; // populated by protect middleware
   const reqBranch = job.criteria_branch || '';
   const reqCgpa = job.criteria_cgpa ? Number(job.criteria_cgpa) : 0;
@@ -63,9 +59,6 @@ const applyJob = asyncHandler(async (req, res) => {
   res.status(201).json(createdApplication);
 });
 
-// @desc    Get my applications (student)
-// @route   GET /api/applications/my
-// @access  Private/Student
 const getMyApplications = asyncHandler(async (req, res) => {
   if (req.user.role !== 'student') {
     res.status(403);
@@ -89,9 +82,7 @@ const getMyApplications = asyncHandler(async (req, res) => {
   });
 });
 
-// @desc    Get applications for a recruiter’s jobs
-// @route   GET /api/applications/recruiter
-// @access  Private/Recruiter
+
 const getRecruiterApplications = asyncHandler(async (req, res) => {
   if (req.user.role !== 'recruiter') {
     res.status(403);
@@ -108,9 +99,7 @@ const getRecruiterApplications = asyncHandler(async (req, res) => {
   res.json(applications);
 });
 
-// @desc    Update application status
-// @route   PUT /api/applications/:id
-// @access  Private/Recruiter
+
 const updateApplicationStatus = asyncHandler(async (req, res) => {
   if (req.user.role !== 'recruiter') {
     res.status(403);
@@ -137,9 +126,7 @@ const updateApplicationStatus = asyncHandler(async (req, res) => {
   res.json(updatedApplication);
 });
 
-// @desc    Get applications for a specific job by jobId (recruiter)
-// @route   GET /api/applications/job/:jobId
-// @access  Private/Recruiter
+
 const getApplicationsByJob = asyncHandler(async (req, res) => {
   console.log('Fetching applications for job ID:', req.params.jobId);
   if (req.user.role !== 'recruiter') {
@@ -154,7 +141,6 @@ const getApplicationsByJob = asyncHandler(async (req, res) => {
     throw new Error('Job not found');
   }
 
-  // Check if the recruiter owns this job
   if (job.company.toString() !== req.user.id) {
     res.status(403);
     throw new Error('Not authorized to view applications for this job');
@@ -168,9 +154,7 @@ const getApplicationsByJob = asyncHandler(async (req, res) => {
   res.json({ applications }); // Ensure applications are always returned within an object
 });
 
-// @desc    Get all applications (admin)
-// @route   GET /api/applications/all
-// @access  Private/Admin
+
 const getApplications = asyncHandler(async (req, res) => {
   if (req.user.role !== 'admin') {
     res.status(403);

@@ -133,9 +133,6 @@ const getCommentsByPostId = asyncHandler(async (req, res) => {
   res.json(comments);
 });
 
-// @desc    Delete a comment from a community post
-// @route   DELETE /api/community/posts/:postId/comments/:commentId
-// @access  Private
 const deleteComment = asyncHandler(async (req, res) => {
   const { postId, commentId } = req.params;
 

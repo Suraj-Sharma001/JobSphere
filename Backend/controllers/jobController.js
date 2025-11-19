@@ -3,9 +3,6 @@ import Job from '../models/Job.js';
 
 const createJob = asyncHandler(async (req, res) => {
 
-  
-  // Step 1: Extract fields from request body
-
   const {
     title,
     description,
@@ -15,7 +12,6 @@ const createJob = asyncHandler(async (req, res) => {
     location,
   } = req.body;
 
-  // Step 2: Authorization check (only recruiter can create job)
  
   
   if (req.user.role !== 'recruiter') {
@@ -24,7 +20,6 @@ const createJob = asyncHandler(async (req, res) => {
   }
 
 
-  // Step 3: Construct new job object
  
   const job = new Job({
     company        : req.user.id,
@@ -36,8 +31,6 @@ const createJob = asyncHandler(async (req, res) => {
     location       : location,
   });
 
- 
-  // Step 4: Save job in the database
   
   const createdJob = await job.save();
 
@@ -63,7 +56,6 @@ const getJobs = asyncHandler(async (req, res) => {
   }
 
   if (cgpa) {
-    // Jobs requiring CGPA less than or equal to student's CGPA
     query.criteria_cgpa = { $lte: Number(cgpa) };
   }
 
