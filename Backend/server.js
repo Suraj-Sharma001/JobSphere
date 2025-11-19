@@ -11,39 +11,25 @@ import applicationRoutes from './routes/applicationRoutes.js';
 import communityRoutes from './routes/communityRoutes.js';
 import feedbackRoutes from './routes/feedbackRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
+import { fileURLToPath } from 'url';
+import path from 'path';
 
 dotenv.config();
 connectDB();
 
 const app = express();
 
-const allowedOrigins = [
-  process.env.FRONTEND_URL,
-  'http://localhost:5173',
-  'http://localhost:3000',
-  'https://job-sphere-six.vercel.app',
-  'https://*.vercel.app', // Allow Vercel preview deployments
-];
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin) return callback(null, true);
-    if (
-      allowedOrigins.includes(origin) ||
-      /https:\/\/.*\.vercel\.app$/.test(origin)
-    ) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
-};
-app.use(cors(corsOptions));
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/', (req, res) => res.send('Placement Portal API is running...'));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const corsOptions = {
+  origin: "http://localhost:5173",
+  credentials: true,
+}
+
+app.use(cors(corsOptions));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
@@ -52,6 +38,11 @@ app.use('/api/applications', applicationRoutes);
 app.use('/api/community', communityRoutes);
 app.use('/api/feedback', feedbackRoutes);
 app.use('/api/admin', adminRoutes);
+
+app.use(express.static(path.join(__dirname, '../client/dist')));
+app.get(/.*/, (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../client', 'dist', 'index.html'));
+});
 
 app.use(notFound);
 app.use(errorHandler);
